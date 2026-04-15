@@ -13,7 +13,7 @@
 /// limitations under the License.
 
 #include "c_specx/dev/assert.h"
-#include "c_specx/error.h"
+#include "c_specx/dev/error.h"
 #include "c_specx/intf/logging.h"
 #include "c_specx/intf/os.h"
 

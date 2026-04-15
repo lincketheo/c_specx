@@ -13,15 +13,15 @@
 /// limitations under the License.
 
 #define WIN32_LEAN_AND_MEAN
-#include "c_specx/winsock2.h"
-#include "c_specx/ws2tcpip.h"
+#include "winsock2.h"
+#include "ws2tcpip.h"
 
 #ifdef _MSC_VER
 #pragma comment(lib, "ws2_32.lib")
 #endif
 
 #include "c_specx/dev/assert.h"
-#include "c_specx/error.h"
+#include "c_specx/dev/error.h"
 #include "c_specx/intf/logging.h"
 #include "c_specx/intf/os/socket.h"
 

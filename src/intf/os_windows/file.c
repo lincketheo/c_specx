@@ -13,11 +13,12 @@
 /// limitations under the License.
 
 #define WIN32_LEAN_AND_MEAN
+#include "windows.h"
+
 #include "c_specx/dev/assert.h"
-#include "c_specx/error.h"
+#include "c_specx/dev/error.h"
 #include "c_specx/intf/logging.h"
 #include "c_specx/intf/os/file_system.h"
-#include "windows.h"
 
 #include <stdio.h>
 #include <string.h>

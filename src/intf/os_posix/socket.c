@@ -13,11 +13,10 @@
 /// limitations under the License.
 
 #include "c_specx/intf/os/socket.h"
-
-#include "sys/poll.h"
 #include "c_specx/dev/assert.h"
 #include "c_specx/dev/error.h"
 
+#include <sys/poll.h>
 #include <arpa/inet.h>
 #include <errno.h>
 #include <netinet/in.h>

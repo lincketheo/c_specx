@@ -16,7 +16,7 @@
 
 #define WIN32_LEAN_AND_MEAN
 #include "c_specx/dev/assert.h"
-#include "c_specx/error.h"
+#include "c_specx/dev/error.h"
 #include "c_specx/intf/os/time.h"
 #include "windows.h"
 
