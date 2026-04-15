@@ -56,5 +56,8 @@ jobs:
         if: matrix.run_tests
         shell: bash
         run: |
-          [[ "${{ runner.os }}" == "Windows" ]] && EXT=".exe" || EXT=""
-          ./build/${{ matrix.preset }}/c_specx_test
+          if [[ "${{ runner.os }}" == "Windows" ]]; then
+            ./build/${{ matrix.preset }}/Debug/c_specx_test.exe
+          else
+            ./build/${{ matrix.preset }}/c_specx_test
+          fi
