@@ -230,11 +230,15 @@ u64
 randu64 (void)
 {
   const u64 base = (u64)RAND_MAX + 1u;
-  const u64 r0 = (u64)randu32 ();
-  const u64 r1 = (u64)randu32 ();
-  const u64 r2 = (u64)randu32 ();
-  const u64 r3 = (u64)randu32 ();
-  return (((r0 * base + r1) * base + r2) * base) + r3;
+  u64 r = (u64)rand ();
+  u64 capacity = base;
+  while (capacity <= (U64_MAX / base))
+    {
+      r = r * base + (u64)rand ();
+      capacity *= base;
+    }
+  r = r * base + (u64)rand ();
+  return r;
 }
 
 i64
