@@ -1,0 +1,59 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    name: ${{ matrix.preset }} / ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - { os: ubuntu-latest,  preset: package-release, run_tests: false, generators: "TGZ;ZIP;DEB;RPM" }
+          - { os: macos-latest,   preset: package-release, run_tests: false, generators: "TGZ;ZIP" }
+          - { os: windows-latest, preset: package-release, run_tests: false, generators: "ZIP" }
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up MSVC
+        if: runner.os == 'Windows'
+        uses: ilammy/msvc-dev-cmd@v1
+
+      - name: Configure
+        run: cmake --preset ${{ matrix.preset }}
+
+      - name: Build
+        run: cmake --build --preset ${{ matrix.preset }}
+
+      - name: Package with CPack
+        shell: bash
+        run: |
+          cd build/${{ matrix.preset }}
+          cpack -G "${{ matrix.generators }}"
+
+      - name: Prepare Artifacts
+        shell: bash
+        run: |
+          mkdir -p dist
+          # Move packages to a flat directory for the release action
+          mv build/${{ matrix.preset }}/*.tar.gz dist/ 2>/dev/null || true
+          mv build/${{ matrix.preset }}/*.deb dist/ 2>/dev/null || true
+          mv build/${{ matrix.preset }}/*.rpm dist/ 2>/dev/null || true
+          mv build/${{ matrix.preset }}/*.zip dist/ 2>/dev/null || true
+          cp LICENSE dist/
+
+      - name: Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist/*
+          generate_release_notes: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
