@@ -496,15 +496,14 @@ TEST (gr_lock_high_pressure_random)
   struct lock_test_ctx ctx;
   test_ctx_init (&ctx, &lock);
 
-  const int num_threads = 12;
-  i_thread threads[num_threads];
+  i_thread threads[12];
 
-  for (int i = 0; i < num_threads; i++)
+  for (int i = 0; i < 12 ; i++)
     {
       i_thread_create (&threads[i], random_stress_worker, &ctx, &e);
     }
 
-  for (int i = 0; i < num_threads; i++)
+  for (int i = 0; i < 12; i++)
     {
       i_thread_join (&threads[i], &e);
     }
