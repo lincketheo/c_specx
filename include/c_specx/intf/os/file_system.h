@@ -48,7 +48,7 @@ struct i_file
 err_t i_open_rw (i_file *dest, const char *fname, error *e);
 err_t i_open_r (i_file *dest, const char *fname, error *e);
 err_t i_open_w (i_file *dest, const char *fname, error *e);
-err_t i_close (const i_file *fp, error *e);
+err_t i_close (i_file *fp, error *e);
 err_t i_eof (i_file *fp, error *e);
 err_t i_fsync (const i_file *fp, error *e);
 

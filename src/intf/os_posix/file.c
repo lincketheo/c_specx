@@ -98,7 +98,7 @@ i_open_w (i_file *dest, const char *fname, error *e)
 }
 
 err_t
-i_close (const i_file *fp, error *e)
+i_close (i_file *fp, error *e)
 {
   DBG_ASSERT (i_file, fp);
   const int ret = close (fp->fd);
