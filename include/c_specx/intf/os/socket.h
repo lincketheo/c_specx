@@ -18,8 +18,8 @@
 
 #if defined(_WIN32)
 #define WIN32_LEAN_AND_MEAN
-#include "c_specx/winsock2.h"
-#include "c_specx/ws2tcpip.h"
+#include "winsock2.h"
+#include "ws2tcpip.h"
 typedef SOCKET i_sock_fd;
 typedef WSAPOLLFD i_pollfd;
 #define I_INVALID_SOCKET INVALID_SOCKET
