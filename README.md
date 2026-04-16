@@ -103,7 +103,7 @@ target_link_libraries(my_target PRIVATE c_specx)
 struct chunk_alloc ca;
 chunk_alloc_create_default (&ca);
 
-error e = {0};
+error e = error_create();
 char *buf = chunk_malloc (&ca, 64, sizeof *buf, &e);
 
 chunk_alloc_reset_all (&ca); /* reuse without freeing */
@@ -121,7 +121,7 @@ struct malloc_plan p = malloc_plan_create ();
 malloc_plan_memcpy (&p, header, header_len);
 malloc_plan_memcpy (&p, body,   body_len);
 
-error e = {0};
+error e = error_create();
 malloc_plan_alloc (&p, &e); /* single malloc */
 
 /* Pass 2 — allocing: fills the buffer */
@@ -137,7 +137,7 @@ malloc_plan_memcpy (&p, body,   body_len);
 struct slab_alloc sa;
 slab_alloc_init (&sa, sizeof (struct my_node), 64);
 
-error e = {0};
+error e = error_create();
 struct my_node *n = slab_alloc_alloc (&sa, &e);
 /* ... use n ... */
 slab_alloc_free (&sa, n);
@@ -164,7 +164,7 @@ cbuffer_pop_front_expect (&out, 1, &b); /* out == 0xAB */
 ```c
 #include "c_specx/ds/block_array.h"
 
-error e = {0};
+error e = error_create();
 struct block_array *arr = block_array_create (256, &e);
 
 const u8 data[] = { 1, 2, 3, 4 };
@@ -182,7 +182,7 @@ block_array_free (arr);
 #include "c_specx/ds/dbl_buffer.h"
 
 struct dbl_buffer db;
-error e = {0};
+error e = error_create();
 dblb_create (&db, sizeof (u32), 16, &e);
 
 const u32 vals[] = { 1, 2, 3 };
@@ -232,7 +232,7 @@ typed table.
 #include "c_specx/intf/stream.h"
 
 const u8 src_data[] = "hello";
-u8 dst_data[8] = {0};
+u8 dst_data[8] = error_create();
 
 struct stream src, dst;
 struct stream_ibuf_ctx ictx;
@@ -241,7 +241,7 @@ struct stream_obuf_ctx octx;
 stream_ibuf_init (&src, &ictx, src_data, sizeof src_data);
 stream_obuf_init (&dst, &octx, dst_data, sizeof dst_data);
 
-error e = {0};
+error e = error_create();
 stream_read (&dst, 1, sizeof src_data, &src, &e);
 ```
 
@@ -326,7 +326,7 @@ spx_unlock_x (&l);
 #include "c_specx/concurrency/gr_lock.h"
 
 struct gr_lock l;
-error e = {0};
+error e = error_create();
 gr_lock_init (&l, &e);
 
 gr_lock   (&l, LM_S, &e); /* shared read */
