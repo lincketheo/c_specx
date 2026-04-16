@@ -14,8 +14,8 @@
 
 #pragma once
 
-#include "stride.h"
 #include "c_specx/dev/error.h"
+#include "stride.h"
 
 /// Function pointer type for inserting data at a byte offset
 typedef err_t (*insert_func) (

@@ -70,8 +70,8 @@
 
 #else
 
-#include "c_specx/dev/signatures.h"
 #include "c_specx/core/macros.h"
+#include "c_specx/dev/signatures.h"
 
 // Throw a compile time error to discourage various debug macros
 #define NOT_FOR_PRODUCTION() // typedef char

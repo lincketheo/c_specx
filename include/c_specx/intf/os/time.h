@@ -74,5 +74,5 @@ void i_get_monotonic_time (struct timespec *ts);
 // Sleep for approximately `us` microseconds.
 // Implemented in the platform-specific timer translation unit.
 void i_sleep_us (u64 us);
-#define i_sleep_ms(ms) i_sleep_us(1000 * ms)
-#define i_sleep_s(s) i_sleep_us(1000000 * s)
+#define i_sleep_ms(ms) i_sleep_us (1000 * ms)
+#define i_sleep_s(s) i_sleep_us (1000000 * s)

@@ -14,10 +14,10 @@
 
 #pragma once
 
-#include "llist.h"
 #include "c_specx/dev/signatures.h"
 #include "c_specx/dev/stdtypes.h"
 #include "c_specx/memory/chunk_alloc.h"
+#include "llist.h"
 
 /// A resolved, internal stride descriptor for tree operations
 struct stride

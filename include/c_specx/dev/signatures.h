@@ -14,8 +14,8 @@
 
 #pragma once
 
-#include "error.h"
 #include "c_specx/intf/os/compiler.h"
+#include "error.h"
 
 #define HEADER_FUNC static inline MAYBE_UNUSED
 typedef err_t (*isvalid_func) (void *ctx, error *e);

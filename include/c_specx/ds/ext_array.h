@@ -14,9 +14,9 @@
 
 #pragma once
 
+#include "c_specx/dev/error.h"
 #include "data_writer.h"
 #include "stride.h"
-#include "c_specx/dev/error.h"
 
 struct ext_array
 {

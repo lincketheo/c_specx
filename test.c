@@ -12,12 +12,12 @@
 /// See the License for the specific language governing permissions and
 /// limitations under the License.
 
-#include "include/c_specx/dev/stdtypes.h"
-#include "include/c_specx/ds/dbl_buffer.h"
-#include "include/c_specx/ds/string.h"
 #include "c_specx/dev/testing.h"
 #include "c_specx/intf/logging.h"
 #include "c_specx/intf/os/time.h"
+#include "include/c_specx/dev/stdtypes.h"
+#include "include/c_specx/ds/dbl_buffer.h"
+#include "include/c_specx/ds/string.h"
 
 #include <stdio.h>
 #include <stdlib.h>

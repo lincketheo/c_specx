@@ -14,8 +14,8 @@
 
 #pragma once
 
-#include "data_writer.h"
 #include "c_specx/memory/slab_alloc.h"
+#include "data_writer.h"
 
 /**
  * @class block

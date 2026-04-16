@@ -14,9 +14,9 @@
 
 #pragma once
 
-#include "stdtypes.h"
 #include "c_specx/core/macros.h"
 #include "c_specx/intf/os/compiler.h"
+#include "stdtypes.h"
 
 #define FPREFIX_STR "%s:%d (%s): \n            "
 #define FPREFIX_ARGS file_basename (__FILE__), __LINE__, __func__

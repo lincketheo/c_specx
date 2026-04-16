@@ -498,7 +498,7 @@ TEST (gr_lock_high_pressure_random)
 
   i_thread threads[12];
 
-  for (int i = 0; i < 12 ; i++)
+  for (int i = 0; i < 12; i++)
     {
       i_thread_create (&threads[i], random_stress_worker, &ctx, &e);
     }
