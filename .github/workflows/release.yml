@@ -10,15 +10,15 @@ permissions:
 
 jobs:
   build:
-    name: ${{ matrix.preset }} / ${{ matrix.os }}
+    name: package-release / ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
       matrix:
         include:
-          - { os: ubuntu-latest,  preset: package-release, run_tests: false, generators: "TGZ;ZIP;DEB;RPM" }
-          - { os: macos-latest,   preset: package-release, run_tests: false, generators: "TGZ;ZIP" }
-          - { os: windows-latest, preset: package-release, run_tests: false, generators: "ZIP" }
+          - { os: ubuntu-latest,  run_tests: false, generators: "TGZ;ZIP;DEB;RPM" }
+          - { os: macos-latest,   run_tests: false, generators: "TGZ;ZIP" }
+          - { os: windows-latest, run_tests: false, generators: "ZIP" }
 
     steps:
       - uses: actions/checkout@v4
@@ -28,15 +28,15 @@ jobs:
         uses: ilammy/msvc-dev-cmd@v1
 
       - name: Configure
-        run: cmake --preset ${{ matrix.preset }}
+        run: cmake --preset package-release
 
       - name: Build
-        run: cmake --build --preset ${{ matrix.preset }}
+        run: cmake --build --preset package-release --config Release
 
       - name: Package with CPack
         shell: bash
         run: |
-          cd build/${{ matrix.preset }}
+          cd build/package-release
           cpack -C Release -G "${{ matrix.generators }}"
 
       - name: Prepare Artifacts
@@ -44,10 +44,10 @@ jobs:
         run: |
           mkdir -p dist
           # Move packages to a flat directory for the release action
-          mv build/${{ matrix.preset }}/*.tar.gz dist/ 2>/dev/null || true
-          mv build/${{ matrix.preset }}/*.deb dist/ 2>/dev/null || true
-          mv build/${{ matrix.preset }}/*.rpm dist/ 2>/dev/null || true
-          mv build/${{ matrix.preset }}/*.zip dist/ 2>/dev/null || true
+          mv build/package-release/*.tar.gz dist/ 2>/dev/null || true
+          mv build/package-release/*.deb dist/ 2>/dev/null || true
+          mv build/package-release/*.rpm dist/ 2>/dev/null || true
+          mv build/package-release/*.zip dist/ 2>/dev/null || true
           cp LICENSE.md dist/
 
       - name: Release
