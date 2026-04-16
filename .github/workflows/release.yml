@@ -37,7 +37,7 @@ jobs:
         shell: bash
         run: |
           cd build/${{ matrix.preset }}
-          cpack -G "${{ matrix.generators }}"
+          cpack -C Release -G "${{ matrix.generators }}"
 
       - name: Prepare Artifacts
         shell: bash
