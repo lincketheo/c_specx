@@ -48,7 +48,7 @@ jobs:
           mv build/${{ matrix.preset }}/*.deb dist/ 2>/dev/null || true
           mv build/${{ matrix.preset }}/*.rpm dist/ 2>/dev/null || true
           mv build/${{ matrix.preset }}/*.zip dist/ 2>/dev/null || true
-          cp LICENSE dist/
+          cp LICENSE.md dist/
 
       - name: Release
         uses: softprops/action-gh-release@v2
