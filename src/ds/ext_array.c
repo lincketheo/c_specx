@@ -60,9 +60,8 @@ ext_array_reserve (struct ext_array *r, const u32 cap, error *e)
   return SUCCESS;
 }
 
-err_t
-ext_array_insert (struct ext_array *r, const u32 ofst, const void *src,
-                  const u32 slen, error *e)
+i64
+ext_array_insert (struct ext_array *r, const u32 ofst, const void *src, const u32 slen, error *e)
 {
   ASSERT (ofst <= r->len);
   if (ext_array_reserve (r, r->len + slen, e))
@@ -89,7 +88,7 @@ ext_array_insert (struct ext_array *r, const u32 ofst, const void *src,
     }
 
   r->len += slen;
-  return SUCCESS;
+  return slen;
 }
 
 i64

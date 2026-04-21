@@ -46,6 +46,18 @@ error_create (void)
   return ret;
 }
 
+void
+error_silence (error *e)
+{
+  e->disable_log = true;
+}
+
+void
+error_unsilence (error *e)
+{
+  e->disable_log = false;
+}
+
 err_t
 error_causef (error *e, const err_t c, const char *fmt, ...)
 {
@@ -68,7 +80,10 @@ error_causef (error *e, const err_t c, const char *fmt, ...)
 
   if (e->cause_code != SUCCESS)
     {
-      i_log_error ("TRACE: %s\n", tmpbuf);
+      if (!e->disable_log)
+        {
+          i_log_error ("TRACE: %s\n", tmpbuf);
+        }
     }
 
   if (e->cause_code == SUCCESS)
@@ -78,7 +93,10 @@ error_causef (error *e, const err_t c, const char *fmt, ...)
       e->cause_msg[cmlen] = '\0';
       e->cmlen = cmlen;
 
-      i_log_error ("%.*s\n", e->cmlen, e->cause_msg);
+      if (!e->disable_log)
+        {
+          i_log_error ("%.*s\n", e->cmlen, e->cause_msg);
+        }
     }
 
   va_end (ap);

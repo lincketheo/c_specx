@@ -28,13 +28,13 @@
 
 #elif defined(__x86_64__) || defined(__i386__)
 
-#define spin_pause() __asm__ volatile ("pause" :: \
-                                           : "memory")
+#define spin_pause() __asm__ volatile("pause" :: \
+                                          : "memory")
 
 #elif defined(__aarch64__) || defined(__arm__)
 
-#define spin_pause() __asm__ volatile ("yield" :: \
-                                           : "memory")
+#define spin_pause() __asm__ volatile("yield" :: \
+                                          : "memory")
 
 #else
 

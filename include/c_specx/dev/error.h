@@ -53,17 +53,16 @@ typedef struct
   err_t cause_code;    ///< Machine-readable error code. @c SUCCESS when no error is pending.
   char cause_msg[256]; ///< Null-terminated human-readable description of the failure.
   u32 cmlen;           ///< Length of @c cause_msg in bytes, excluding the null terminator.
+  bool disable_log;    ///< disable the error log temporarily
 } error;
 
 error error_create (void);
+void error_silence (error *e);
+void error_unsilence (error *e);
 void err_t_perror (FILE *output, error *e);
 err_t error_causef (error *e, err_t c, const char *fmt, ...) PRINTF_ATTR (3, 4);
 err_t error_change_causef (error *e, err_t c, const char *fmt, ...) PRINTF_ATTR (3, 4);
-err_t error_change_causef_from (
-    error *e,
-    err_t from,
-    err_t to,
-    const char *fmt, ...) PRINTF_ATTR (4, 5);
+err_t error_change_causef_from (error *e, err_t from, err_t to, const char *fmt, ...) PRINTF_ATTR (4, 5);
 void error_log_consume (error *e);
 bool error_equal (const error *left, const error *right);
 

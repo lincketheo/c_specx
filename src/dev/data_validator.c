@@ -12,12 +12,7 @@
 /// See the License for the specific language governing permissions and
 /// limitations under the License.
 
-#include "c_specx/dev/data_validator.h"
-
-#include "c_specx/core/math.h"
-#include "c_specx/core/random.h"
-#include "c_specx/dev/error.h"
-#include "c_specx/intf/os/memory.h"
+#include "c_specx.h"
 
 #include <string.h>
 
@@ -48,8 +43,7 @@ dvalidtr_light_validate (const struct dvalidtr *d, error *e)
 }
 
 static err_t
-dvalidtr_read (const struct dvalidtr *d, const struct stride str,
-               const u32 size, void *_dest, error *e)
+dvalidtr_read (const struct dvalidtr *d, const struct stride str, const u32 size, void *_dest, error *e)
 {
   void *ref = i_malloc (str.nelems, size, e);
   void *dest = _dest;
@@ -169,13 +163,13 @@ dvalidtr_insert (struct dvalidtr *d, const u32 ofst,
 
   // Read back what we just inserted (byte-level, so size=1 and
   // nelems=slen)
-  const i64 sut_read = dvalidtr_read (d,
-                                      (struct stride){
-                                          .start = ofst,
-                                          .nelems = slen,
-                                          .stride = 1,
-                                      },
-                                      1, NULL, e);
+  err_t sut_read = dvalidtr_read (d,
+                                  (struct stride){
+                                      .start = ofst,
+                                      .nelems = slen,
+                                      .stride = 1,
+                                  },
+                                  1, NULL, e);
   if (sut_read < 0)
     {
       error_causef (e, ERR_CORRUPT,
@@ -430,7 +424,8 @@ dvalidtr_random_test (struct dvalidtr *d, const u32 size, const u32 niters,
         C_READ,
         C_REMOVE,
         C_WRITE,
-      } choice = randu32r (0, 3);
+      } choice
+          = randu32r (0, 3);
       if (len == 0)
         {
           choice = C_INSERT;

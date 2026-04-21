@@ -189,8 +189,7 @@ static const struct stream_ops stream_obuf_ops = {
 };
 
 void
-stream_ibuf_init (struct stream *s, struct stream_ibuf_ctx *ctx,
-                  const void *buf, const u32 size)
+stream_ibuf_init (struct stream *s, struct stream_ibuf_ctx *ctx, const void *buf, const u32 size)
 {
   ctx->buf = (const u8 *)buf;
   ctx->size = size;

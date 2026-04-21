@@ -32,7 +32,7 @@
 
 // NORETURN — marks a function that never returns
 #if defined(_MSC_VER)
-#define NORETURN __declspec (noreturn)
+#define NORETURN __declspec(noreturn)
 #else
 #define NORETURN __attribute__ ((noreturn))
 #endif

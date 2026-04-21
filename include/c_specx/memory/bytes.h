@@ -32,4 +32,4 @@ struct cbytes
   (struct bytes) { .head = buffer, .len = sizeof (buffer) }
 
 #define bytes_null() \
-  (struct bytes){ .head = NULL, .len = 0 }
+  (struct bytes) { .head = NULL, .len = 0 }
