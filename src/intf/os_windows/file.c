@@ -72,8 +72,10 @@ i_open_rw (i_file *dest, const char *fname, error *e)
 err_t
 i_open_r (i_file *dest, const char *fname, error *e)
 {
-  HANDLE h = CreateFileA (fname, GENERIC_READ, FILE_SHARE_READ, NULL,
+  HANDLE h = CreateFileA (fname, GENERIC_READ, 
+                          FILE_SHARE_READ | FILE_SHARE_WRITE, NULL,
                           OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
+
   if (h == INVALID_HANDLE_VALUE)
     {
       char buf[WIN_ERR_BUF];
@@ -87,8 +89,10 @@ i_open_r (i_file *dest, const char *fname, error *e)
 err_t
 i_open_w (i_file *dest, const char *fname, error *e)
 {
-  HANDLE h = CreateFileA (fname, GENERIC_WRITE, FILE_SHARE_WRITE, NULL,
+  HANDLE h = CreateFileA (fname, GENERIC_WRITE, 
+                          FILE_SHARE_WRITE | FILE_SHARE_READ, NULL,
                           OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
+
   if (h == INVALID_HANDLE_VALUE)
     {
       char buf[WIN_ERR_BUF];
