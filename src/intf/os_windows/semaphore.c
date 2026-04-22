@@ -23,7 +23,7 @@
 // Semaphore
 //
 // Backed by a Win32 semaphore HANDLE. LONG_MAX as the maximum
-// count is effectively unbounded for numstore's usage.
+// count is effectively unbounded for smartfile's usage.
 
 err_t
 i_semaphore_create (i_semaphore *s, unsigned int value, error *e)

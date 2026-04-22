@@ -27,8 +27,7 @@ DEFINE_DBG_ASSERT (struct dbl_buffer, dbl_buffer, d, {
 })
 
 err_t
-dblb_create (struct dbl_buffer *dest, const u32 size,
-             const u32 initial_cap, error *e)
+dblb_create (struct dbl_buffer *dest, const u32 size, const u32 initial_cap, error *e)
 {
   ASSERT (initial_cap > 0);
   ASSERT (size > 0);
@@ -52,8 +51,7 @@ dblb_create (struct dbl_buffer *dest, const u32 size,
 }
 
 err_t
-dblb_append (struct dbl_buffer *d, const void *data, const u32 nelem,
-             error *e)
+dblb_append (struct dbl_buffer *d, const void *data, const u32 nelem, error *e)
 {
   DBG_ASSERT (dbl_buffer, d);
 

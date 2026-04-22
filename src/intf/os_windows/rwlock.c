@@ -27,7 +27,7 @@
 //
 // write_locked tracks whether the current holder acquired it
 // exclusively, since ReleaseSRWLock* has two separate callsites.
-// This is only safe because numstore's rwlock contract requires
+// This is only safe because smartfile's rwlock contract requires
 // a single writer OR multiple readers — not concurrent mixed use
 // on the same i_rwlock instance from different threads calling
 // unlock simultaneously.

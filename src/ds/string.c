@@ -15,7 +15,9 @@
 #include "c_specx/ds/string.h"
 
 #include "c_specx/dev/assert.h"
+#include "c_specx/dev/error.h"
 #include "c_specx/dev/testing.h"
+#include "c_specx/intf/os/memory.h"
 
 #include <string.h>
 
@@ -281,4 +283,18 @@ string_greater_equal_string (const struct string left,
                              const struct string right)
 {
   return !string_less_string (left, right);
+}
+
+err_t
+string_copy (struct string *dest, struct string src, error *e)
+{
+  char *data = i_calloc (src.len + 1, 1, e);
+  if (dest->data == NULL)
+    {
+      return error_trace (e);
+    }
+  memcpy (data, src.data, src.len);
+  dest->data = data;
+  dest->len = src.len;
+  return SUCCESS;
 }

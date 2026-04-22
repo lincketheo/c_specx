@@ -58,7 +58,7 @@ test_print_help (const char *prog)
   fprintf (stderr, "Usage: %s [TYPE] [--suite NAME]... [filter...]\n", prog);
   fprintf (stderr, "\nSuites:\n");
   fprintf (stderr, "  --suite NAME     Run only tests in NAME (repeatable)\n");
-  fprintf (stderr, "  Available:       core, intf, numstore, paging\n");
+  fprintf (stderr, "  Available:       core, intf, smartfile, paging\n");
   fprintf (stderr, "\nFilters:\n");
   fprintf (stderr, "  [filter...]      Run tests whose names contain any filter\n");
   fprintf (stderr, "  If omitted, all tests of the selected type/suite run.\n");

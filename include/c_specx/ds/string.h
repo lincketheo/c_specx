@@ -63,3 +63,5 @@ bool string_less_equal_string (
 bool string_greater_equal_string (
     const struct string left,
     const struct string right);
+
+err_t string_copy (struct string *dest, struct string src, error *e);

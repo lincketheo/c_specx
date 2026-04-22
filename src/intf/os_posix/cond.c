@@ -164,6 +164,53 @@ i_cond_wait (i_cond *c, i_mutex *m)
 }
 
 void
+i_cond_timed_wait (i_cond *c, i_mutex *m, u64 msec)
+{
+  ASSERT (c);
+  ASSERT (m);
+
+  struct timespec ts;
+  clock_gettime (CLOCK_REALTIME, &ts);
+  ts.tv_sec += msec / 1000;
+  ts.tv_nsec += (msec % 1000) * 1000000LL;
+  if (ts.tv_nsec >= 1000000000LL)
+    {
+      ts.tv_sec += 1;
+      ts.tv_nsec -= 1000000000LL;
+    }
+
+  errno = 0;
+  int ret = pthread_cond_timedwait (&c->cond, &m->m, &ts);
+  if (ret && ret != ETIMEDOUT)
+    {
+      switch (ret)
+        {
+        case EINVAL:
+          {
+            i_log_error ("cond_timed_wait: invalid cond, "
+                         "mutex, or abstime: %s\n",
+                         strerror (ret));
+            UNREACHABLE ();
+          }
+        case EPERM:
+          {
+            i_log_error ("cond_timed_wait: mutex not "
+                         "owned by thread: %s\n",
+                         strerror (ret));
+            UNREACHABLE ();
+          }
+        default:
+          {
+            i_log_error ("cond_timed_wait: unknown "
+                         "error: %s\n",
+                         strerror (ret));
+            UNREACHABLE ();
+          }
+        }
+    }
+}
+
+void
 i_cond_signal (i_cond *c)
 {
   ASSERT (c);

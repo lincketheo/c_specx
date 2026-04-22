@@ -50,7 +50,7 @@ thirdparty/linenoise
 # Java
 *.class
 *.jar
-bindings/java/jnumstore/build/
+bindings/java/jsmartfile/build/
 .gradle/
 build/doxygen/
 docs/api/

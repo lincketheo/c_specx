@@ -1,4 +1,4 @@
-# This file has all the in code constants to define and auto generates include/numstore/compile_config
+# This file has all the in code constants to define and auto generates include/smartfile/compile_config
 
 # Platform 
 if(CMAKE_SYSTEM_NAME STREQUAL "Linux")

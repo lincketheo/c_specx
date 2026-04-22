@@ -102,7 +102,7 @@ i_thread_cancel (i_thread *t)
   // TerminateThread is asynchronous and does not run destructors,
   // flush buffers, or release locks. It is the closest Windows
   // equivalent to pthread_cancel with deferred cancellation disabled.
-  // numstore uses cancel only for WAL background flush threads that
+  // smartfile uses cancel only for WAL background flush threads that
   // hold no locks at cancel points, so this is safe in practice.
   if (!TerminateThread (t->handle, 0))
     {

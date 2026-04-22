@@ -121,5 +121,6 @@ typedef struct
 err_t i_cond_create (i_cond *c, error *e);
 void i_cond_free (i_cond *c);
 void i_cond_wait (i_cond *c, i_mutex *m);
+void i_cond_timed_wait (i_cond *c, i_mutex *m, u64 msec);
 void i_cond_signal (i_cond *c);
 void i_cond_broadcast (i_cond *c);

@@ -1,6 +1,6 @@
 .PHONY: all build comprehensive \
         test run-tests run-tests-no-asan \
-        nstypes-tests nspager-tests numstore-tests nsusecase-tests \
+        nstypes-tests nspager-tests smartfile-tests nsusecase-tests \
         package package-deb package-rpm package-tar package-zip \
         package-python package-java package-all \
         homebrew-formula install clean format tidy
