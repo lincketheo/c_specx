@@ -19,7 +19,7 @@
 #include "c_specx/intf/os/compiler.h"
 #include "stdtypes.h"
 
-#define FPREFIX_STR "%s:%d (%s): \n            "
+#define FPREFIX_STR "%s:%d (%s):             "
 #define FPREFIX_ARGS file_basename (__FILE__), __LINE__, __func__
 
 /// Copyright 2026 Theo Lincke
