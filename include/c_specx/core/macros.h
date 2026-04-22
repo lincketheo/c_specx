@@ -16,6 +16,9 @@
 
 #include "c_specx/intf/os/compiler.h"
 
+#define FPREFIX_STR "%s:%d (%s):             "
+#define FPREFIX_ARGS file_basename (__FILE__), __LINE__, __func__
+
 #include <stddef.h>
 
 #define container_of(ptr, type, member) \

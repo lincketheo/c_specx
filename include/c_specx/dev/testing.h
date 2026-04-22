@@ -17,11 +17,10 @@
 #ifndef NTEST
 
 #include "c_specx/core/filenames.h"
+#include "c_specx/core/macros.h"
 #include "c_specx/dev/assert.h"
 #include "c_specx/dev/signatures.h"
 #include "c_specx/intf/logging.h"
-
-#define FPREFIX_STR "%s:%d (%s): \n            "
 
 typedef bool (*test_func) (void);
 typedef struct

@@ -19,11 +19,6 @@
 #include "c_specx/intf/os/compiler.h"
 #include "stdtypes.h"
 
-#ifndef FPREFIX_STR
-#define FPREFIX_STR "%s:%d (%s): \n            "
-#define FPREFIX_ARGS file_basename (__FILE__), __LINE__, __func__
-#endif
-
 /// Copyright 2026 Theo Lincke
 ///
 /// Licensed under the Apache License, Version 2.0 (the "License");
