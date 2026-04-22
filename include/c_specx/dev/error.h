@@ -14,6 +14,7 @@
 
 #pragma once
 
+#include "c_specx/core/filenames.h"
 #include "c_specx/core/macros.h"
 #include "c_specx/intf/os/compiler.h"
 #include "stdtypes.h"
@@ -71,7 +72,7 @@ NORETURN void error_fatal (const char *fmt, ...);
 ////////////////////////////////////////////////////////////
 /// Macro Wrappers
 
-#define error_trace(e) (e)->cause_code < 0 ? error_causef (e, (e)->cause_code, __func__) : (e)->cause_code
+#define error_trace(e) (e)->cause_code < 0 ? error_causef (e, (e)->cause_code, FPREFIX_STR, FPREFIX_ARGS) : (e)->cause_code
 
 /*
 ** WRAP(expr) — evaluate expr, and if it signals failure return immediately.
