@@ -289,7 +289,7 @@ err_t
 string_copy (struct string *dest, struct string src, error *e)
 {
   char *data = i_calloc (src.len + 1, 1, e);
-  if (dest->data == NULL)
+  if (data == NULL)
     {
       return error_trace (e);
     }
