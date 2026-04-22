@@ -80,7 +80,7 @@ void i_log_flush (void);
 ////////////////////////////////////////////////////////////
 // LOGGING WRAPPERS
 
-#if defined(NLOGGING)
+#if defined(NLOG)
 #define SHOULD_LOG_AT(lvl) 0
 #else
 #define SHOULD_LOG_AT(lvl) ((I_LOG_LEVEL) >= (lvl))
@@ -127,7 +127,7 @@ void i_log_flush (void);
 #endif
 
 // These are always logged
-#ifndef NLOGGING
+#ifndef NLOG
 #define i_log_assert(...) i_log_internal ("ASSERT", RED, __VA_ARGS__)
 #define i_log_failure(...) i_log_internal ("FAILURE", BOLD_RED, __VA_ARGS__)
 #define i_log_passed(...) i_log_internal ("PASSED", BOLD_GREEN, __VA_ARGS__)
