@@ -24,19 +24,17 @@ else ()
 endif ()
 
 # The main library
-add_library(c_specx STATIC ${TLCLIB_SOURCES})
+add_library(c_specx OBJECT ${TLCLIB_SOURCES})
 target_include_directories(c_specx
   PUBLIC "${PROJECT_SOURCE_DIR}/include"
   PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}"
 )
-
 # Add c11 option
 if (MSVC)
     target_compile_options(c_specx PRIVATE /std:c11)
 else ()
     target_compile_features(c_specx PRIVATE c_std_11)
 endif ()
-
 if (WIN32)
     target_include_directories(c_specx PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/intf/os_windows")
     target_link_libraries(c_specx PUBLIC ws2_32)
@@ -44,24 +42,11 @@ else ()
     target_include_directories(c_specx PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/intf/os_posix")
     target_link_libraries(c_specx PUBLIC pthread)
 endif ()
-
-set_target_properties(c_specx PROPERTIES
-        OUTPUT_NAME "c_specx"
-        VERSION "${PROJECT_VERSION}"
-)
-
-install(TARGETS c_specx
-        ARCHIVE DESTINATION "${CMAKE_INSTALL_LIBDIR}"
-        LIBRARY DESTINATION "${CMAKE_INSTALL_LIBDIR}"
-        COMPONENT development
-)
-
 install(DIRECTORY "${PROJECT_SOURCE_DIR}/include/"
         DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}"
         COMPONENT development
         FILES_MATCHING PATTERN "*.h"
 )
-
 install(
         FILES
         "${PROJECT_SOURCE_DIR}/README.md"
